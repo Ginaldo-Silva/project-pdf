@@ -1,34 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState } from 'react';
+
+import UploadInput from './components/UploadInput/UploadInput'
+import ButtonPrimary from './components/Button/ButtonPrimary';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isNightMode, setIsNightMode] = useState(false);
+
+  const toggleNightMode = () => {
+    setIsNightMode(!isNightMode);
+    console.log(isNightMode);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='container'>
+        <div className='header'>
+          <ButtonPrimary
+            type="button"
+            labelText="NightMode"
+            isNightMode={isNightMode}
+            onClick={() => toggleNightMode()}
+          />
+        </div>
+        <div className='section'>
+          <h1>Hello World</h1>
+          <UploadInput
+            isNightMode={isNightMode}
+            type="file"
+            id="fileInput"
+            name="fileInput"
+          />
+          <ButtonPrimary
+            type="button"
+            labelText="Carregar arquivo"
+            isNightMode={isNightMode}
+          />
+        </div>
+        <div className='footer'>
+          <p>By Ginaldo Silva.</p>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
   )
 }
 
